@@ -43,8 +43,7 @@ class BFS:
 				elif self.board[r][c] == 3:
 					rect = pygame.Rect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE)
 					pygame.draw.rect(screen, (255,255, 255), rect)
-
-
+					
 		self.pos = []
 		for move in path:
 			if move == 'L':
@@ -62,31 +61,27 @@ class BFS:
 				if (r, c) in self.pos:
 					rect = pygame.Rect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE)
 					pygame.draw.rect(screen, (255, 0, 0), rect)
-
 		return True
 
 	def valid(self, moves, pos):
 		if not(0 <= pos[1] < len(self.board[0]) and 0 <= pos[0] < len(self.board)):
 			return False
-
-
+		
 		if pos in self.cells:
 			return False
 
 		if 0 <= pos[1] < len(self.board[0]) and 0 <= pos[0] < len(self.board):
 			if self.board[pos[0]][pos[1]] == 3:
 				return False
-
 		return True
 
 	def findEnd(self, moves, pos):
 		self.animations()
 		pygame.display.update()
 		
-
 		if self.board[pos[0]][pos[1]] == 2:
 			return True
-
+		
 		return False
 
 	def getPos(self, moves):
@@ -97,7 +92,6 @@ class BFS:
 					j = r
 		currentMove = ""
 		for move in moves:
-
 			if move == 'L':
 				currentMove += 'L'
 				i -= 1
@@ -110,8 +104,6 @@ class BFS:
 			elif move == 'D':
 				currentMove += 'D'
 				j += 1
-
-		
 		return (j, i)
 
 	def animations(self):
@@ -142,7 +134,7 @@ class BFS:
 						self.board[r][c] = 3
 					else:
 						continue
-
+						
 	def reset(self):
 		self.cells.clear()
 		self.pos.clear()
@@ -171,8 +163,6 @@ class BFS:
 		if self.goalSelected:
 			rect = pygame.Rect(math.floor(pygame.mouse.get_pos()[0]/CELL_SIZE) * CELL_SIZE, math.floor(pygame.mouse.get_pos()[1]/CELL_SIZE)* CELL_SIZE, CELL_SIZE, CELL_SIZE)
 			pygame.draw.rect(screen, (180, 242, 87), rect)
-
-
 
 def grid(length, width, numCellsH, numCellsV, cellSize):
 	x, y = 0, 0
@@ -218,9 +208,7 @@ while running:
 
 
 							print(put)
-
 				b.path = add
-		
 
 	grid(SCREEN_LENGTH, SCREEN_WIDTH, NUM_OF_CELLS_H, NUM_OF_CELLS_V, CELL_SIZE)
 	
